@@ -1,49 +1,37 @@
 lib.locale()
 
-RegisterNetEvent('ejj_businesscard:businesscardbestilling')
-AddEventHandler('ejj_businesscard:businesscardbestilling', function(frontImage, backImage, amount)
-    local playerSource = source
+RegisterNetEvent('fivemBuisnessCard:server:GetCards')
+AddEventHandler('fivemBuisnessCard:server:GetCards', function(frontImage, backImage, amount)
     local item = 'money'
-    local cost = 250 * amount
-    local inventoryId = playerSource
-    local ox_inventory = exports.ox_inventory
+    local cost = Config.Item.price * amount
 
-    local moneyItem = ox_inventory:GetItem(inventoryId, item)
-    
-    if moneyItem and moneyItem.count >= cost then
+    local moneyItem = exports.ox_inventory:GetItem(source, item)
 
-        ox_inventory:RemoveItem(inventoryId, item, cost)
-
-        local cardItem = 'businesscard'
-        local count = amount
-
-        local metadata = {
-            frontImage = frontImage,
-            backImage = backImage,
-        }
-
-        ox_inventory:AddItem(inventoryId, cardItem, count, metadata, nil, function(success, response)
-            if success then
-                local slot = ox_inventory:GetSlotForItem(inventoryId, cardItem, nil)
-                ox_inventory:SetMetadata(inventoryId, slot, metadata)
-
-                local notificationData = {
-                    title = string.format(locale('order_success'), amount, cost),
-                    type = 'success',
-                    position = 'bottom'
-                }
-                TriggerClientEvent('ox_lib:notify', playerSource, notificationData)
-            else
-                print('Failed to add item. Response: ' .. response)
-            end
-        end)
-    else
-        local notificationData = {
-            title = locale('not_enough_money'), 
-            description = string.format(locale('not_enough_money_description'), amount), 
+    if not (moneyItem and moneyItem.count >= cost) then
+        lib.notify(source, {
+            title = locale('not_enough_money'),
+            description = string.format(locale('not_enough_money_description'), amount),
             type = 'error',
-            position = 'bottom'
-        }
-        TriggerClientEvent('ox_lib:notify', playerSource, notificationData)
+        })
+        return
+    end
+
+    exports.ox_inventory:RemoveItem(source, item, cost)
+
+    local metadata = {
+        frontImage = frontImage,
+        backImage = backImage,
+    }
+
+    local success, response = exports.ox_inventory:AddItem(source, Config.Item.name, amount, metadata, nil)
+    if success then
+        local slot = exports.ox_inventory:GetSlotForItem(source, Config.Item.name, nil)
+        exports.ox_inventory:SetMetadata(source, slot, metadata)
+        lib.notify(source, {
+            title = string.format(locale('order_success'), amount, cost),
+            type = 'success',
+        })
+    else
+        print('Failed to add item. Response: ' .. response)
     end
 end)

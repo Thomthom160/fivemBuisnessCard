@@ -1,0 +1,17 @@
+{
+    "order_business_card": "[E] Acheter une carte de viste",
+    "order_business_card_title": "Carte de visite | $%d unité",
+    "front": "Avant",
+    "back": "Arrière",
+    "number_of_cards": "Nombre de carde de visite",
+    "front_image_description": "URL de l'image, (450x255 pixels maximum)",
+    "back_image_description": "URL de l'image, (450x255 pixels maximum)",
+    "card_quantity_description": "Nombre de carde de visite que tu veux acheter",
+    "image_url_error": "Image URL must be from fivemanage.com",
+    "order_success": "Tu à acheter %d carte de visite pour un total de $%d",
+    "not_enough_money": "Tu n'a pas assez d'argent",
+    "not_enough_money_description": "Tu n'a pas assez d'argent pour acheter %d cartes de vitises",
+
+    "card_item_label": "Nom des Cartes",
+    "card_item_label_description": "Le nom afficher sur les cartes de visites"
+}

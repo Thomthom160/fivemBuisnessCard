@@ -1,6 +1,6 @@
 {
-    "order_business_card": "Order Business Card",
-    "order_business_card_title": "Order Business Card | $250 each",
+    "order_business_card": "[E] Order Business Card",
+    "order_business_card_title": "Order Business Card | $%d each",
     "front": "Front",
     "back": "Back",
     "number_of_cards": "Number of Business Cards",

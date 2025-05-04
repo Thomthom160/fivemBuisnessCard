@@ -1,6 +1,6 @@
 {
     "order_business_card": "Bestil businesscard",
-    "order_business_card_title": "Bestil businesscard | 250,- DKK stykket",
+    "order_business_card_title": "Bestil businesscard | %d,- DKK stykket",
     "front": "Front",
     "back": "Bag",
     "number_of_cards": "Antal businesscard",

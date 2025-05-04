@@ -5,3 +5,8 @@ Config.Ped = {
     PedCoords = vec3(329.0709, -965.0310, 29.4222),
     PedHeading = 357.0923
 }
+
+Config.Item = {
+    name = 'businesscard',
+    price = 250
+}
